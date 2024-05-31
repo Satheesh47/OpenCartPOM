@@ -1,0 +1,11 @@
+com\opencart\pages\RegisterPage.class
+com\opencart\utils\Constants.class
+com\opencart\utils\ExtentReporter.class
+com\opencart\pages\AccountSuccessPage.class
+com\opencart\pages\LoginPage.class
+com\opencart\utils\Listeners.class
+com\opencart\pages\SearchPage.class
+com\opencart\utils\Utilities.class
+com\opencart\utils\Utilities$1.class
+com\opencart\pages\AccountPage.class
+com\opencart\pages\HomePage.class
