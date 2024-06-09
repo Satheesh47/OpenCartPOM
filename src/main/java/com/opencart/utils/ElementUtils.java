@@ -48,5 +48,15 @@ public class ElementUtils {
         }
         return webElement;
     }
+    public void clickOnElement(WebElement element,long durationInSeconds) {
+        WebElement webElement = waitForElementToBeClickable(element,durationInSeconds);
+        webElement.click();
+    }
+    public void typeTextIntoElement(WebElement element,String text,long durationInSeconds) {
+        WebElement webElement = waitForElementToBeClickable(element,durationInSeconds);
+        webElement.click();
+        webElement.clear();
+        webElement.sendKeys(text);
+    }
 
 }
