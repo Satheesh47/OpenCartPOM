@@ -1,19 +1,21 @@
 package com.opencart.pages;
 
+import com.opencart.utils.ElementUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AccountSuccessPage {
+public class AccountSuccessPage extends ElementUtils {
     private WebDriver driver;
     @FindBy(xpath = "//div[@id='content']/h1")
     private WebElement accountSuccessPageHeading;
     public AccountSuccessPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
     public String retrieveAccountSuccessPageHeading() {
-        return accountSuccessPageHeading.getText();
+        return getTextFromElement(accountSuccessPageHeading,10);
     }
 }

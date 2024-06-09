@@ -34,5 +34,19 @@ public class ElementUtils {
         }
         return webElement;
     }
+    public String getTextFromElement(WebElement element,long durationInSeconds) {
+        WebElement webElement = waitForElementToBeClickable(element,durationInSeconds);
+        return webElement.getText();
+    }
+    public WebElement waitForElementToBeClickable(WebElement element, long durationInSeconds) {
+        WebElement webElement = null;
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(durationInSeconds));
+            webElement = wait.until(ExpectedConditions.elementToBeClickable(element));
+        }catch (Throwable e) {
+            e.printStackTrace();
+        }
+        return webElement;
+    }
 
 }
