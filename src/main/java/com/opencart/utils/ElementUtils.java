@@ -8,12 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ElementUtils {
-    WebDriver driver;
-
-    public ElementUtils(WebDriver driver) {
+    private WebDriver driver;
+    public ElementUtils(final WebDriver driver) {
         this.driver = driver;
     }
-
     public boolean isElementDisplayed(WebElement element, long durationInSeconds) {
         try {
             WebElement webElement = waitForVisibilityOfElement(element,durationInSeconds);
@@ -23,7 +21,6 @@ public class ElementUtils {
             return false;
         }
     }
-
     public WebElement waitForVisibilityOfElement(WebElement element,long durationInSeconds) {
         WebElement webElement = null;
         try {
@@ -48,5 +45,14 @@ public class ElementUtils {
         }
         return webElement;
     }
-
+    public void clickOnElement(WebElement element,long durationInSeconds) {
+        WebElement webElement = waitForElementToBeClickable(element,durationInSeconds);
+        webElement.click();
+    }
+    public void typeTextIntoElement(WebElement element,String text,long durationInSeconds) {
+        WebElement webElement = waitForElementToBeClickable(element,durationInSeconds);
+        webElement.click();
+        webElement.clear();
+        webElement.sendKeys(text);
+    }
 }

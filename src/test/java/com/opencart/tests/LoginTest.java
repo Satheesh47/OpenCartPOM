@@ -1,6 +1,6 @@
 package com.opencart.tests;
 
-import com.opencart.base.Base;
+import com.opencart.base.BaseTest;
 import com.opencart.pages.AccountPage;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.LoginPage;
@@ -17,23 +17,15 @@ import static com.opencart.utils.Utilities.*;
 import static com.opencart.utils.Constants.*;
 import static com.opencart.utils.Utilities.generateTimeStamp;
 
-public class LoginTest extends Base {
-    public WebDriver driver;
-    LoginPage loginPage;
-    AccountPage accountPage;
+public class LoginTest extends BaseTest {
+    private LoginPage loginPage;
+    private AccountPage accountPage;
 
     @BeforeMethod
     public void setUp() {
-        driver = initializeBrowserAndOpen(BROWSER);
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(initializeBrowserAndOpen(BROWSER));
         loginPage = homePage.navigateToLoginPage();
     }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
-
     @Test(priority = 1,dataProvider = "validCredentialSupplier")
     public void verifyLoginWithValidCredentials(String email,String password) {
         accountPage = loginPage.login(email,password);
@@ -75,7 +67,7 @@ public class LoginTest extends Base {
     public void verifyLoginWithoutProvidingCredentials() {
         loginPage.login("","");
         Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().
-                contains(EMAIL_PASSWORD_NO_MATCHING_MSG), "Warning message is not displayed");
+                contains(EMAIL_PASSWORD_BLANK_WARNING_MSG), "Warning message is not displayed");
     }
 
 //    @Test(priority = 6)

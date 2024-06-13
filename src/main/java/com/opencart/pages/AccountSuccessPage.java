@@ -7,12 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AccountSuccessPage extends ElementUtils {
-    private WebDriver driver;
     @FindBy(xpath = "//div[@id='content']/h1")
     private WebElement accountSuccessPageHeading;
-    public AccountSuccessPage(WebDriver driver) {
+    public AccountSuccessPage(final WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver,this);
     }
     public String retrieveAccountSuccessPageHeading() {

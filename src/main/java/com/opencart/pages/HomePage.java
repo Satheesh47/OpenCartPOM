@@ -1,11 +1,12 @@
 package com.opencart.pages;
 
+import com.opencart.utils.ElementUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+public class HomePage extends ElementUtils {
     private WebDriver driver;
     @FindBy(xpath = "//a[@title='My Account']")
     private WebElement myAccountDropMenu;
@@ -17,49 +18,42 @@ public class HomePage {
     private WebElement searchBoxField;
     @FindBy(xpath = "//button[@class='btn btn-default btn-lg']")
     private WebElement searchBtn;
-    public HomePage(WebDriver driver) {
+    public HomePage(final WebDriver driver) {
+        super(driver);
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
     public SearchPage clickOnSearchButton() {
-        searchBtn.click();
+        clickOnElement(searchBtn,10);
         return new SearchPage(driver);
     }
-
     public SearchPage searchForAProduct(String text) {
-        searchBoxField.sendKeys(text);
-        searchBtn.click();
+        typeTextIntoElement(searchBoxField,text,10);
+        clickOnElement(searchBtn,10);
         return new SearchPage(driver);
     }
-
     public void clickOnMyAccount() {
-        myAccountDropMenu.click();
+        clickOnElement(myAccountDropMenu,10);
     }
-
     public LoginPage navigateToLoginPage() {
-        myAccountDropMenu.click();
-        loginOption.click();
+        clickOnElement(myAccountDropMenu,10);
+        clickOnElement(loginOption,10);
         return new LoginPage(driver);
     }
-
     public RegisterPage navigateToRegisterPage() {
-        myAccountDropMenu.click();
-        registerOption.click();
+        clickOnElement(myAccountDropMenu,10);
+        clickOnElement(registerOption,10);
         return new RegisterPage(driver);
     }
-
     public LoginPage selectLoginOption() {
-        loginOption.click();
+        clickOnElement(loginOption,10);
         return new LoginPage(driver);
     }
     public RegisterPage selectRegisterOption() {
-        registerOption.click();
+        clickOnElement(registerOption,10);
         return new RegisterPage(driver);
     }
-
     public void enterProductIntoSearchBoxField(String text) {
-        searchBoxField.sendKeys(text);
+        typeTextIntoElement(searchBoxField,text,10);
     }
-
-
 }

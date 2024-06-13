@@ -8,7 +8,6 @@ import static com.opencart.utils.Utilities.*;
 import java.io.File;
 
 public class ExtentReporter {
-
     private String extentReportFileName;
 
     public String getExtentReportFileName() {

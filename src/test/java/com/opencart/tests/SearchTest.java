@@ -1,6 +1,6 @@
 package com.opencart.tests;
 
-import com.opencart.base.Base;
+import com.opencart.base.BaseTest;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.SearchPage;
 import org.openqa.selenium.WebDriver;
@@ -11,14 +11,12 @@ import org.testng.annotations.Test;
 
 import static com.opencart.utils.Constants.*;
 
-public class SearchTest extends Base {
-    public WebDriver driver;
-    SearchPage searchPage;
-    HomePage homePage;
+public class SearchTest extends BaseTest {
+    private SearchPage searchPage;
+    private HomePage homePage;
     @BeforeMethod
     public void setUp() {
-        driver = initializeBrowserAndOpen(BROWSER);
-        homePage = new HomePage(driver);
+        homePage = new HomePage(initializeBrowserAndOpen(BROWSER));
     }
 
     @Test(priority = 1)
@@ -42,9 +40,4 @@ public class SearchTest extends Base {
 //    public void failTest() {
 //        Assert.assertTrue(false);
 //    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 }

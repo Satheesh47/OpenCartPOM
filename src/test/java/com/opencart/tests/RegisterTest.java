@@ -1,6 +1,6 @@
 package com.opencart.tests;
 
-import com.opencart.base.Base;
+import com.opencart.base.BaseTest;
 import com.opencart.pages.AccountSuccessPage;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.RegisterPage;
@@ -14,15 +14,13 @@ import static com.opencart.utils.Constants.BROWSER;
 import static com.opencart.utils.Constants.*;
 import static com.opencart.utils.Utilities.generateEmailWithTimeStamp;
 
-public class RegisterTest extends Base {
-    public WebDriver driver;
-    RegisterPage registerPage;
-    AccountSuccessPage accountSuccessPage;
+public class RegisterTest extends BaseTest {
+    private RegisterPage registerPage;
+    private AccountSuccessPage accountSuccessPage;
 
     @BeforeMethod
     public void setUp() {
-        driver = initializeBrowserAndOpen(BROWSER);
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(initializeBrowserAndOpen(BROWSER));
         registerPage = homePage.navigateToRegisterPage();
     }
 
@@ -54,9 +52,4 @@ public class RegisterTest extends Base {
 //    public void failTest() {
 //        Assert.assertTrue(false);
 //    }
-
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
 }

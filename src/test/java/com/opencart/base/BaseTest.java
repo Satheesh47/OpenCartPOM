@@ -4,11 +4,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterMethod;
 
 import java.time.Duration;
 import static com.opencart.utils.Constants.*;
 
-public class Base {
+public class BaseTest {
 
     WebDriver driver;
 
@@ -29,6 +30,11 @@ public class Base {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIME));
 
         return driver;
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
     }
 
 }
