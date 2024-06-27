@@ -65,10 +65,10 @@ public class Utilities {
         return data;
     }
 
-    public static String captureScreenShot(WebDriver driver,String testName) {
+    public static String captureScreenShot(WebDriver driver,String screenShotName) {
 
         File srcScrShot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        String destScrShotPath = System.getProperty("user.dir")+"\\Screenshots_"+testName+"_"+generateTimeStamp()+".png";
+        String destScrShotPath = System.getProperty("user.dir")+"\\test-output\\Screenshots_"+screenShotName+"_"+generateTimeStamp()+".png";
         try {
             FileHandler.copy(srcScrShot,new File(destScrShotPath));
         } catch (IOException e) {

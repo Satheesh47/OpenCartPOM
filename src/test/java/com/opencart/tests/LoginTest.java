@@ -1,9 +1,11 @@
 package com.opencart.tests;
 
+import com.aventstack.extentreports.Status;
 import com.opencart.base.BaseTest;
 import com.opencart.pages.AccountPage;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.LoginPage;
+import com.opencart.utils.ExtentManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -29,6 +31,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1,dataProvider = "validCredentialSupplier")
     public void verifyLoginWithValidCredentials(String email,String password) {
         accountPage = loginPage.login(email,password);
+        ExtentManager.getExtentTest().log(Status.INFO,"Logged in successfully with Email: "+email+"; Password: "+password);
         Assert.assertTrue(accountPage.getDisplayedStatusOfEditYourAccountInformationOption(),
                 "Edit your account information is not displayed");
     }
@@ -47,6 +50,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(generateEmailWithTimeStamp(),generateTimeStamp());
         Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().
                 contains(EMAIL_PASSWORD_NO_MATCHING_MSG), "Warning message is not displayed");
+        ExtentManager.getExtentTest().log(Status.INFO,"Log is not successful!!");
     }
 
     @Test(priority = 3)
@@ -54,6 +58,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(generateEmailWithTimeStamp(),VALID_PASSWORD);
         Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().
                 contains(EMAIL_PASSWORD_NO_MATCHING_MSG), "Warning message is not displayed");
+        ExtentManager.getExtentTest().log(Status.INFO,"Log is not successful!!");
     }
 
     @Test(priority = 4)
@@ -61,6 +66,7 @@ public class LoginTest extends BaseTest {
         loginPage.login(VALID_USERNAME,generateTimeStamp());
         Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().
                 contains(EMAIL_PASSWORD_NO_MATCHING_MSG), "Warning message is not displayed");
+        ExtentManager.getExtentTest().log(Status.INFO,"Log is not successful!!");
     }
 
     @Test(priority = 5)
@@ -68,10 +74,6 @@ public class LoginTest extends BaseTest {
         loginPage.login("","");
         Assert.assertTrue(loginPage.retrieveEmailPasswordNotMatchingWarningMessageText().
                 contains(EMAIL_PASSWORD_BLANK_WARNING_MSG), "Warning message is not displayed");
+        ExtentManager.getExtentTest().log(Status.INFO,"Log is not successful!!");
     }
-
-//    @Test(priority = 6)
-//    public void failTest() {
-//        Assert.assertTrue(false);
-//    }
 }

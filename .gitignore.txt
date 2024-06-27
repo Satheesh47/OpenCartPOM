@@ -1,3 +1,7 @@
-.idea/
-target
-test-output
+.idea/*
+target/*
+*/target/**
+test-output/*
+*/test-output/**
+*.iml
+*.class

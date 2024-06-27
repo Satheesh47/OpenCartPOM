@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Open Cart Automation Suite">
+<suite name="Open Cart Automation Suite" parallel="classes" thread-count="3">
     <listeners>
-        <listener class-name="com.opencart.utils.Listeners"></listener>        
+        <listener class-name="com.opencart.utils.Listeners"></listener>
     </listeners>
     <test verbose="2" preserve-order="true" name="Open Cart Automation Test Cases">
         <classes>
